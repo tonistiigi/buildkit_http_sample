@@ -64,6 +64,7 @@ func build(w http.ResponseWriter, r *http.Request) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
+	defer os.RemoveAll(tmpdir)
 
 	if err := archive.Untar(r.Body, tmpdir, nil); err != nil {
 		return nil, err
